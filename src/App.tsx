@@ -13,11 +13,16 @@ function App() {
   const [message, setMessage] = useState<string>();
   const [digipetStats, setDigipetStats] = useState<Digipet>();
 
-  const loadDataFromEndpoint = async (endpoint: string) => {
-    const res = await fetch(`http://localhost:4000${endpoint}`);
-    const body = await res.json();
-    setMessage(body.message);
-    setDigipetStats(body.digipet);
+  const loadDataFromEndpoint = async (endpoint: `/${string}`) => {
+    try {
+      const res = await fetch(`http://localhost:4000${endpoint}`);
+      const body = await res.json();
+      setMessage(body.message);
+      setDigipetStats(body.digipet);
+    } catch (err) {
+      console.log(err);
+      setMessage(`${err.name}: ${err.message}`);
+    }
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
