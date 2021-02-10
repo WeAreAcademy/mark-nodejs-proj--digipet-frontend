@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# Digipet - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a>
 
-## Available Scripts
+> This is part of Academy's [technical curriculum for **The Mark**](https://github.com/WeAreAcademy/curriculum-mark). All parts of that curriculum, including this project, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
 
-In the project directory, you can run:
+We're going to building a frontend to connect to our Digipet backend, so it's possible to interact with our digipet through a nice user interface!
 
-### `yarn start`
+## Learning Outcomes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Connect a locally running frontend to a locally running backend
+-
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Exercise 0: Running and connecting to the backend
 
-### `yarn test`
+> 🎯 **Success criterion:** you can run the frontend locally and connect it to your digipet backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Connecting to the backend
 
-### `yarn build`
+Make sure that you've shut down your backend server.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Then, clone/fork the repo and start your frontend app with `yarn start`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+It will start on `localhost:3000` - but it won't do anything interesting, really, but it will warn you about a `TypeError: Failed to fetch`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you [open up your browser console](https://developers.google.com/web/tools/chrome-devtools/open), you'll also see something like the following:
 
-### `yarn eject`
+```
+GET http://localhost:4000/digipet net::ERR_CONNECTION_REFUSED
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+So, our `fetch` is running into an error. It can't connect to `localhost:4000/digipet` - because our backend server isn't running!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+So, start up your backend server. You now should be able to hatch and walk a digipet through your server!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Persistence through the server
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+React apps lose their state when you refresh them in the browser. However, when you refresh `localhost:3000`, you'll see that the stats of our digipet are preserved - because this data is stored in-memory in the server!
 
-## Learn More
+When the server is restarted, it'll lose its state, and so everything will be lost (**try this and see**) - but that's still an improvement! In a later project, we'll look at adding some basic persistence to our server.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Exercise 1: Reading, understanding and documenting
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> 🎯 **Success criterion:** a document which outlines how you think this React frontend interacts with the Express backend. You don't have to achieve a theory which explains 100%, but you should strive to explain as much as possible.
+
+## Exercise 2: Extending the frontend behaviour
+
+> 🎯 **Success criterion:** a frontend app which lets you interact with the digipet backend at all sensible endpoints.
+
+## Exercise 4: Commentary and reflection
+
+> 🎯 **Success criterion:** documented reflections.
