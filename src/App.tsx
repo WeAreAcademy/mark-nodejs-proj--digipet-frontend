@@ -9,7 +9,7 @@ export interface Digipet {
 }
 
 function App() {
-  const [isFirstLoad, setIsFirstLoad] = useState(false);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [message, setMessage] = useState<string>();
   const [digipetStats, setDigipetStats] = useState<Digipet>();
 
@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     // safe to ignore exhaustive deps warning as we're _not_ triggering infinite updates, since our setState is conditional and fails on all rerenders after the first one
     if (isFirstLoad) {
-      loadDataFromEndpoint("/");
+      loadDataFromEndpoint("/digipet");
       setIsFirstLoad(false);
     }
   });
@@ -32,6 +32,7 @@ function App() {
   return (
     <main>
       <h1>Digipet</h1>
+      {isFirstLoad && <p>Loading...</p>}
       {message && <p>{message}</p>}
       <hr />
       <DigipetData digipet={digipetStats} />
