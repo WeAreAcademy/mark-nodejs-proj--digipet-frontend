@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import DigipetActions from "./components/DigipetActions";
+import DigipetData from "./components/DigipetData";
 
-interface Digipet {
+export interface Digipet {
   happiness: number;
   nutrition: number;
   discipline: number;
@@ -24,18 +26,10 @@ function App() {
     <main>
       <h1>Digipet</h1>
       {message && <p>{message}</p>}
-      {digipetStats && (
-        <>
-          <h2>Stats</h2>
-          <ul>
-            {Object.entries(digipetStats).map(([key, value]) => (
-              <li key={key}>
-                <b>{key}:</b> {value}
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      <hr />
+      <DigipetData digipet={digipetStats} />
+      <hr />
+      <DigipetActions actions={[{ name: "Hatch" }, { name: "Walk" }]} />
     </main>
   );
 }
