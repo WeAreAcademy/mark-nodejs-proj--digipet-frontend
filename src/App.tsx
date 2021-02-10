@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+
+interface Digipet {
+  happiness: number;
+  nutrition: number;
+  discipline: number;
+}
 
 function App() {
+  const [message, setMessage] = useState<string>();
+  const [digipetStats, setDigipetStats] = useState<Digipet>();
+
+  useEffect(() => {
+    const loadInitialData = async () => {
+      const res = await fetch("http://localhost:4000");
+      const body = await res.json();
+      setMessage(body.message);
+      setDigipetStats(body.digipet);
+    };
+    loadInitialData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <h1>Digipet</h1>
+      {message && <p>{message}</p>}
+      {digipetStats && (
+        <>
+          <h2>Stats</h2>
+          <ul>
+            {Object.entries(digipetStats).map(([key, value]) => (
+              <li key={key}>
+                <b>{key}:</b> {value}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </main>
   );
 }
 
