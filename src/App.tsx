@@ -9,18 +9,25 @@ export interface Digipet {
 }
 
 function App() {
+  const [isFirstLoad, setIsFirstLoad] = useState(false);
   const [message, setMessage] = useState<string>();
   const [digipetStats, setDigipetStats] = useState<Digipet>();
 
+  const loadDataFromEndpoint = async (endpoint: string) => {
+    const res = await fetch(`http://localhost:4000${endpoint}`);
+    const body = await res.json();
+    setMessage(body.message);
+    setDigipetStats(body.digipet);
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const loadInitialData = async () => {
-      const res = await fetch("http://localhost:4000");
-      const body = await res.json();
-      setMessage(body.message);
-      setDigipetStats(body.digipet);
-    };
-    loadInitialData();
-  }, []);
+    // safe to ignore exhaustive deps warning as we're _not_ triggering infinite updates, since our setState is conditional and fails on all rerenders after the first one
+    if (isFirstLoad) {
+      loadDataFromEndpoint("/");
+      setIsFirstLoad(false);
+    }
+  });
 
   return (
     <main>
@@ -29,7 +36,19 @@ function App() {
       <hr />
       <DigipetData digipet={digipetStats} />
       <hr />
-      <DigipetActions actions={[{ name: "Hatch" }, { name: "Walk" }]} />
+      <DigipetActions
+        actions={[
+          {
+            name: "Hatch",
+            handler: () => loadDataFromEndpoint("/digipet/hatch"),
+          },
+          {
+            name: "Walk",
+            handler: () => loadDataFromEndpoint("/digipet/walk"),
+          },
+          { name: "Feed" },
+        ]}
+      />
     </main>
   );
 }
