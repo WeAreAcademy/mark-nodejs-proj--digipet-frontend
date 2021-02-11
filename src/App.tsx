@@ -14,6 +14,8 @@ function App() {
   const [digipetStats, setDigipetStats] = useState<Digipet>();
 
   const loadDataFromEndpoint = async (endpoint: `/${string}`) => {
+    // try... catch documentation:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
     try {
       const res = await fetch(`http://localhost:4000${endpoint}`);
       const body = await res.json();
@@ -29,6 +31,7 @@ function App() {
   useEffect(() => {
     // safe to ignore exhaustive deps warning as we're _not_ triggering infinite updates, since our setState is conditional and fails on all rerenders after the first one
     if (isFirstLoad) {
+      // populate data on first load
       loadDataFromEndpoint("/digipet");
       setIsFirstLoad(false);
     }
