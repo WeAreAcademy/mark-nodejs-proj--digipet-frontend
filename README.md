@@ -47,6 +47,27 @@ When the server is restarted, it'll lose its state, and so everything will be lo
 
 > 🎯 **Success criterion:** a frontend app which lets you interact with the digipet backend at all sensible endpoints.
 
+Our React app facilitates very limited interaction with our backend at the moment - we ended up adding functionality on training, feeding and ignoring our digipet in the last exercise.
+
+Make the game more complete by adding in the frontend UI to support the full suite of behaviour which the backend supports.
+
+### Optional: changing the server responses
+
+As you're doing this, you may wish to change some of the endpoint response behaviour.
+
+For example, some of the server responses refer to endpoints like `/digipet/hatch` in their body `message` - which may be helpful to a developer trying to navigate the server endpoints, but which is meaningless to a typical user of our frontend (who doesn't know, and doesn't need to know, about these endpoints).
+
+Some strategies here might include:
+
+1. Re-specifying the request handlers (and associated tests) to omit mention of endpoints
+2. Adding in a new body property, e.g. `description`, to separate out "message for developer consuming this API" and "message for the frontend to show in the UI"
+
+## Exercise 3: Styling / refactoring (optional)
+
+The frontend is quite plain and boring - you may wish to style it (CSS Modules, `styled-components`, external component libraries...).
+
+We think this is a worthwhile exercise, to keep that muscle fresh and have a full-stack experience of CSS through to React through to NodeJS, but we suggest you timebox this to a _maximum_ of one hour.
+
 ## Exercise 4: Commentary and reflection
 
 > 🎯 **Success criterion:** documented reflections.
