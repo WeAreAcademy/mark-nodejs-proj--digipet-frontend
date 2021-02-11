@@ -29,7 +29,7 @@ function App() {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    // safe to ignore exhaustive deps warning as we're _not_ triggering infinite updates, since our setState is conditional and fails on all rerenders after the first one
+    // safe to ignore exhaustive deps warning as we're _not_ triggering infinite updates, since our setState is conditional and not executed on all rerenders after the first one
     if (isFirstLoad) {
       // populate data on first load
       loadDataFromEndpoint("/digipet");
