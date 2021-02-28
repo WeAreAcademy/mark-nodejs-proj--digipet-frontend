@@ -9,7 +9,8 @@ We're going to building a frontend to connect to our Digipet backend, so it's po
 ## Learning Outcomes
 
 - Connect a locally running frontend to a locally running backend
--
+
+> 🏋🏾‍♀️ **Stretch challenge: building your own frontend from scratch.** This repo has a scaffold for an existing frontend, to be used as a basis to plug into your Digipet backend. You are, however, free to disregard this and build out your own frontend for your digipet backend entirely from scratch.
 
 ## Exercise 0: Running and connecting to the backend
 
